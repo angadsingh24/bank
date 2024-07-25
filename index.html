@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Bank Management</h1>
+        <button class="add-account"> Add Account </button>
+    </div>
+    
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form action="" method="post" class="account-form">
+                <label for="accountNumber">Account Number:</label>
+                <input id="accountNumber" type="number" name="account-num" required>
+                <br>
+                <label for="name">Name:</label>
+                <input id="name" type="text" name="full-name" required>
+                <br>
+                <label for="balance">Initial Deposit:</label>
+                <input id="balance" type="number" min="0" name="balance" required>
+                <br>
+                <label for="type">Account Type (Checking/Saving): </label>
+                <input id="type" type="text" name="type" required>
+                <br>
+                <input type="submit" class="submit-button" value="Submit">
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Account cards will be displayed here -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
