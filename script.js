@@ -5,34 +5,57 @@ const modal = document.querySelector('.modal');
 const closeButton = document.querySelector('.close');
 const accountForm = document.querySelector('.account-form');
 
-function Account(accountNumber, name, balance, type) {
-    this.accountNumber = accountNumber;
-    this.name = name;
-    this.balance = parseFloat(balance); // Ensure balance is a number
-    this.type = type;
+class Account {
+
+    constructor(accountNumber, name, balance, type){
+        this.accountNumber = accountNumber;
+        this.name = name;
+        this.balance = parseFloat(balance); // Ensure balance is a number
+        this.type = type;
+    }
+
+    get accountNum(){
+        return this.accountNumber;
+    }
+
+    get accountName(){
+        return this.name;
+    }
+
+    get accountBalance(){
+        return this.balance;
+    }
+
+    get accountType(){
+        return this.type;
+    }
+
+    deposit(amount){
+        this.balance += parseFloat(amount); // Ensure amount is treated as a number
+
+    }
+
+    withdraw(amount){
+        const withdrawAmount = parseFloat(amount); // Ensure amount is treated as a number
+
+        if (this.balance >= amount) {
+            this.balance -= amount;
+        } else {
+            alert('Insufficient balance!');
+        }
+    }
+
+    updateAccName(name){
+        this.name = name; 
+
+    }
+
+    updateAccountNum(accountNumber){
+        this.accountNumber = accountNumber; 
+    }
+
 }
 
-Account.prototype.deposit = function(amount) {
-  this.balance += parseFloat(amount); // Ensure amount is treated as a number
-};
-
-Account.prototype.withdraw = function(amount) {
-  const withdrawAmount = parseFloat(amount); // Ensure amount is treated as a number
-
-  if (this.balance >= amount) {
-      this.balance -= amount;
-  } else {
-      alert('Insufficient balance!');
-  }
-};
-
-Account.prototype.updateAccName = function(name){
-  this.name = name; 
-}
-
-Account.prototype.updateAccountNum = function(accountNumber){
-  this.accountNumber = accountNumber;
-}
 
 function addAccountToBank(newAccount) {
     bank.push(newAccount);
@@ -45,10 +68,10 @@ function displayAccounts() {
         const accountCard = document.createElement('div');
         accountCard.classList.add('account-card');
         accountCard.innerHTML = `
-            <h3>Account Number: ${account.accountNumber}</h3>
-            <p>Name: ${account.name}</p>
-            <p>Balance: $${account.balance}</p>
-            <p>Type: ${account.type}</p
+            <h3>Account Number: ${account.accountNum}</h3>
+            <p>Name: ${account.accountName}</p>
+            <p>Balance: $${account.accountBalance}</p>
+            <p>Type: ${account.accountType}</p
         `;
         const removeButton = document.createElement('button');
         removeButton.classList.add('remove-button');
